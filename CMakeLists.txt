@@ -6,6 +6,8 @@ project(picoprobe)
 
 pico_sdk_init()
 
+add_compile_definitions(QTPY_RP2040)
+
 add_executable(picoprobe
         src/led.c
         src/main.c

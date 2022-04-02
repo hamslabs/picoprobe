@@ -45,7 +45,21 @@
 #define picoprobe_dump(format,...) ((void)0)
 #endif
 
+#ifdef QTPY_RP2040
+#define PROBE_SM 0
+#define PROBE_PIN_OFFSET 3
+#define PROBE_PIN_SWCLK PROBE_PIN_OFFSET + 0 // 3 - labeled MO
+#define PROBE_PIN_SWDIO PROBE_PIN_OFFSET + 1 // 4 - labeled MI
 
+// Target reset config
+#define PROBE_PIN_RESET 6 // 6 - labeled SCK
+
+// UART config
+#define PICOPROBE_UART_TX 20 // labeled TX
+#define PICOPROBE_UART_RX 5	 // labeled RX
+#define PICOPROBE_UART_INTERFACE uart1
+#define PICOPROBE_UART_BAUDRATE 115200
+#else
 // PIO config
 #define PROBE_SM 0
 #define PROBE_PIN_OFFSET 2
@@ -60,6 +74,7 @@
 #define PICOPROBE_UART_RX 5
 #define PICOPROBE_UART_INTERFACE uart1
 #define PICOPROBE_UART_BAUDRATE 115200
+#endif
 
 // LED config
 #ifndef PICOPROBE_LED
